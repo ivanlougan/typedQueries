@@ -46,5 +46,22 @@ public class ProductDao {
         TypedQuery<Product> query = entityManager.createQuery(jpqlQuery, Product.class);
         return query.getResultList();
     }
+
+    public List<Product> getAllStatic() {
+        TypedQuery<Product> namedQuery = entityManager.createNamedQuery("Product.findAll", Product.class);
+        List<Product> resultList = namedQuery.getResultList();
+        return resultList;
+    }
+
+    public void deleteAllStatic() {
+        TypedQuery<Product> namedQuery = entityManager.createNamedQuery("Product.deleteAll", Product.class);
+        namedQuery.executeUpdate();
+    }
+
+    public List<Product> sortListByPrice() {
+        TypedQuery<Product> namedQuery = entityManager.createNamedQuery("Product.findAllByPrice", Product.class);
+        List<Product> resultList = namedQuery.getResultList();
+        return resultList;
+    }
 }
 
